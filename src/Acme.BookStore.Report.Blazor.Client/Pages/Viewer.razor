@@ -1,0 +1,21 @@
+﻿@page "/Viewer"
+@page "/Viewer/{paramKey:guid}"
+@using DevExpress.Blazor.Reporting
+<h3>Viewer</h3>
+<DxWasmDocumentViewer ReportName="@reportEntry" Height="700px" Width="100%">
+<DxDocumentViewerExportSettings UseSameTab=false>
+</DxDocumentViewerExportSettings>
+<DxWasmDocumentViewerRequestOptions InvokeAction="DXXRDV">
+</DxWasmDocumentViewerRequestOptions>
+</DxWasmDocumentViewer>
+
+@code {
+    [Parameter]
+    public Guid paramKey { get; set; }
+    public string reportEntry { get; set; } = "TestReport";
+    protected override void OnParametersSet()
+    {
+        reportEntry = $"TestReport?paramKey={paramKey}";
+        base.OnParametersSet();
+    }
+}
